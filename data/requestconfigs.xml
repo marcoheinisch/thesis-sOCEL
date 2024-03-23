@@ -1,0 +1,120 @@
+<Configuration>
+    <Requests>
+        <APIRequest id="id_example_call_existing" quantity_name="weight">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <weight>1</weight>
+                <weight_unit>t</weight_unit>
+            </Parameters>
+            <Emission_factor>
+                <activity_id>metals-type_steel_cold_rolled_coil</activity_id>
+                <region>GLOBAL</region>
+                <data_version>^3</data_version>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_electricity-supply_grid-source_nuclear" quantity_name="energy">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <energy>1</energy>
+                <energy_unit>kWh</energy_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>f4eeeece-ad93-47c6-b216-b3f01d24afb6</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_material-cold-rolled-steel-coil" quantity_name="weight">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <weight>1</weight>
+                <weight_unit>kg</weight_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>a060ba13-4a33-4260-bb6b-f239f8206730</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_gas_upstream_kwh[Wh]" quantity_name="energy">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <energy>1</energy>
+                <energy_unit>Wh</energy_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>76d483ef-e4f1-463d-a194-a1401632f62a</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_electric_kwh" quantity_name="energy">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <energy>1</energy>
+                <energy_unit>kWh</energy_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>b9c6f8d9-0a3d-4399-8dbb-806b1cff595e</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_coating[m2]" quantity_name="area">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <area>1</area>
+                <area_unit>m2</area_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>eea09689-d2ac-4762-a495-be39078919f6</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_waste-type_scrap_metal-open" quantity_name="weight">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <weight>1</weight>
+                <weight_unit>kg</weight_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>e115e214-e40e-45ad-a53c-b8af0c7dcb8c</id>
+            </Emission_factor>
+        </APIRequest>
+        <Default id="id_n2_gas">0.5555555555555556</Default>
+        <APIRequest id="id_cardboard_material" quantity_name="weight">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <weight>1</weight>
+                <weight_unit>kg</weight_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>9713175d-5ffb-42f5-8fab-1034344ec7ac</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_steel_rivets[kg]" quantity_name="weight">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <weight>1</weight>
+                <weight_unit>kg</weight_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>71663a74-11b9-468e-a913-390c6972b990</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_industrial-waste[kg]" quantity_name="weight">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <weight>1</weight>
+                <weight_unit>kg</weight_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>49fe0d69-00fe-4d89-8a05-5bd63a9c968b</id>
+            </Emission_factor>
+        </APIRequest>
+        <APIRequest id="id_gas_combustion_Wh" quantity_name="energy">
+            <Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint>
+            <Parameters>
+                <energy>1</energy>
+                <energy_unit>Wh</energy_unit>
+            </Parameters>
+            <Emission_factor>
+                <id>c21abe3d-44ed-485a-ae1e-9fa9db979e95</id>
+            </Emission_factor>
+        </APIRequest>
+        <Default id="id_compressed-air[m3]">0.06498000000000001</Default>
+    </Requests>
+    <Default>
+    </Default>
+</Configuration>
