@@ -1,6 +1,6 @@
 # thesis-sOCEL
 
-This project integrates a CPN-Tools model with Python to generate an object-centric event log (sOCEL) enriched with sustainability data.
+This project integrates a CPN-Tools model with Python to generate an [object-centric event log (OCEL)](https://www.ocel-standard.org/) enriched with sustainability data.
 
 ## Setup
 
