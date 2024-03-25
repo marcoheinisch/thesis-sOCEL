@@ -10,6 +10,8 @@ This project integrates a CPN-Tools model with Python to generate an object-cent
 - Run `cpn_api_start.py` to start the local API.
 - Run simulation in CPN-Tools. Preconfigured, it needs to run for 60000 cycles. After that the API connection needs to be closed manually in CPN-Tools by trigering the close transition.
 
+The sOCEL (csvs and xml) can be analyzed using [analyse_socel_csvs.ipynb](analyse_socel_csvs.ipynb) and [analyse_socel_xml.ipynb](analyse_socel_xml.ipynb).
+
 ## Run without API / Offline Mode
 
 - In CPN-Tools under `declarations`, set `API_ENABLED` to `false` in the SML code and don't start the `cpn_api` tool for simulation.
