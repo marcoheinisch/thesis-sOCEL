@@ -1,3 +1,6 @@
+(* reuses code from https://doi.org/10.5281/zenodo.8289899 **)
+
+
 val SEP = ";";
 val OUTPUT_PATH = "../data/socel-csv/";
 
