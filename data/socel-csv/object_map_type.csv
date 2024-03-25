@@ -1,0 +1,13 @@
+ocel_type;ocel_type_map
+SteelCoil;SteelCoil
+SteelSheet;SteelSheet
+FormedPart;FormedPart
+MalePart;MalePart
+FemalePart;FemalePart
+SteelPin;SteelPin
+Hinge;Hinge
+HingePack;HingePack
+Workstation;Workstation
+Machine;Machine
+Facility;Facility
+Worker;Worker

@@ -1,0 +1,12 @@
+ocel_type;ocel_type_map
+SplitSteelSheet;SplitSteelSheet
+HeatSteelSheet;HeatSteelSheet
+FormSteelSheet;FormSteelSheet
+CoatPart;CoatPart
+CuttMalePart;CuttMalePart
+CuttFemalePart;CuttFemalePart
+CheckMalePart;CheckMalePart
+CheckFemalePart;CheckFemalePart
+AssembleHinge;AssembleHinge
+PackHinges;PackHinges
+MoveParts;MoveParts

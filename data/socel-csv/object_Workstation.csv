@@ -1,0 +1,4 @@
+ocel_id;ocel_time;ocel_changed_field;P_electric-from-grid-de[kWh];P_compressed-air[m3]
+o_workstation_1;2023-04-03 07:30:00;;o_workstation_1;(Pointer-W-A-1)
+o_workstation_2;2023-04-03 07:30:00;;o_workstation_2;(Pointer-W-A-2)
+o_workstation_3;2023-04-03 07:30:00;;o_workstation_3;(Pointer-W-A-3)

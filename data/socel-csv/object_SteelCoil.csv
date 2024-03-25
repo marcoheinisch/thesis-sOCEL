@@ -1,0 +1,5 @@
+ocel_id;ocel_time;ocel_changed_field;p_mass[kg];p_material[EN10130:2006];p_init-len[cm];p_width[cm];i_material-cold-rolled-steel[kg];s_co2e[kg];i_steel-waste-to-recycle[kg]
+o_steelcoil_1;2023-04-03 07:30:00;;31.91076;DC01;4522.5;3.0;31.91076;80.7342228;?
+o_steelcoil_2;2023-04-03 07:30:00;;31.91076;DC01;4522.5;3.0;31.91076;80.7342228;?
+o_steelcoil_3;2023-04-03 07:30:00;;31.91076;DC01;4522.5;3.0;31.91076;80.7342228;?
+o_steelcoil_4;2023-04-03 07:30:00;;31.91076;DC01;4522.5;3.0;31.91076;80.7342228;?

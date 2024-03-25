@@ -1,0 +1,8 @@
+ocel_id;ocel_time;ocel_changed_field;P_electric-from-grid-de[kWh];P_gas-from-grid-de[m3]
+o_machine_splitter01;2023-04-03 07:30:00;;(Pointer-M-electr-splitter01);(Pointer-M-gas-splitter01)
+o_machine_oven01;2023-04-03 07:30:00;;(Pointer-M-electr-oven01);(Pointer-M-gas-oven01)
+o_machine_former02;2023-04-03 07:30:00;;(Pointer-M-electr-former02);(Pointer-M-gas-former02)
+o_machine_coater03;2023-04-03 07:30:00;;(Pointer-M-electr-coater03);(Pointer-M-gas-coater03)
+o_machine_cutter01;2023-04-03 07:30:00;;(Pointer-M-electr-cutter01);(Pointer-M-gas-cutter01)
+o_machine_assembler01;2023-04-03 07:30:00;;(Pointer-M-electr-assembler01);(Pointer-M-gas-assembler01)
+o_machine_packer01;2023-04-03 07:30:00;;(Pointer-M-electr-packer01);(Pointer-M-gas-packer01)
