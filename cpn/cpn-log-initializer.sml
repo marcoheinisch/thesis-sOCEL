@@ -10,23 +10,23 @@ val OBJECT_TYPES = ["SteelCoil", "SteelSheet", "FormedPart", "MalePart", "Female
 
 fun eas_by_type(a: EventType) = 
    if a="SplitSteelSheet" 
-      then ["s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_steel-waste-to-recycle[kg]"] else 
+      then ["p_duration[s]", "s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_steel-waste-to-recycle[kg]"] else 
    if a="HeatSteelSheet" 
-      then ["s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_gas_input+burned[Wh]", "i_emission-of-burn[Wh]", "p_dureation_heating[s]"] else 
+      then ["p_duration[s]", "s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_gas_input[Wh]", "i_emission-of-burn[Wh]"] else 
    if a="FormSteelSheet" 
-      then ["s_co2e[kg]", "i_electric-from-grid-de[kWh]"] else 
+      then ["p_duration[s]", "s_co2e[kg]", "i_electric-from-grid-de[kWh]"] else 
    if a="CoatPart"  
-      then ["s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_coating-material[kg]", "i_coating-material-waste[kg]"] else 
+      then ["p_duration[s]", "s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_coating-material[kg]", "i_coating-material-waste[kg]"] else 
    if a="CuttMalePart" orelse a="CuttFemalePart" 
-      then ["s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_compressed-air[m3]", "i_gas-n2-used[m3]","i_gas-n2-emiited-to-air[m3]", "i_steel-waste[kg]"] else 
+      then ["p_duration[s]", "s_co2e[kg]", "i_electric-from-grid-de[kWh]", "i_compressed-air[m3]", "i_gas-n2-used[m3]","i_gas-n2-emiited-to-air[m3]", "i_steel-waste[kg]"] else 
    if a="CheckMalePart" orelse a="CheckFemalePart" 
-      then ["s_co2e[kg]", "i_compressed-air[m3]"] else 
+      then ["p_duration[s]", "s_co2e[kg]", "i_compressed-air[m3]"] else 
    if a="AssembleHinge" 
-      then ["s_co2e[kg]"] else 
+      then ["p_duration[s]", "s_co2e[kg]"] else 
    if a="PackHinges" 
-      then ["s_co2e[kg]", "i_cardboard-box[kg]"] else 
+      then ["p_duration[s]", "s_co2e[kg]", "i_cardboard-box[kg]"] else 
    if a="MoveParts" 
-      then [] else 
+      then ["p_duration[s]"] else 
    ["debug_default"];
 	
 fun oas_by_type(ot: ObjectType) = 

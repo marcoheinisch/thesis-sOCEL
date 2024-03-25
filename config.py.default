@@ -1,0 +1,7 @@
+FILEPATH_REQUESTS_XML = "./data/requestconfigs.xml"
+FILEPATH_LOG_DEBUG = "./data/cpn-api.log"
+FILEPATH_REQUEST_CACHE = "./data/requests_cache"
+
+API_KEY_CLIMATIQ = ""
+
+OFFLINE_MODE = False 

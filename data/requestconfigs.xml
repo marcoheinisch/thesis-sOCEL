@@ -114,7 +114,7 @@
             </Emission_factor>
         </APIRequest>
         <Default id="id_compressed-air[m3]">0.06498000000000001</Default>
-    </Requests>
+    <APIRequest id="id_test" quantity_name="weight"><Endpoint>https://beta4.api.climatiq.io/estimate</Endpoint><Parameters><weight>1</weight><weight_unit>kg</weight_unit></Parameters><Emission_factor><id>9713175d-5ffb-42f5-8fab-1034344ec7ac</id></Emission_factor></APIRequest></Requests>
     <Default>
     </Default>
 </Configuration>

@@ -135,7 +135,7 @@ let
    val p_init_len = (Real.toString len1)
    val p_width = (Real.toString wid1)
    val i_material = p_mass
-   val i_steel_waste = ""
+   val i_steel_waste = "?"
 
    val s_co2e = call("id_material-cold-rolled-steel-coil", p_mass)
    val objects_with_attribute_values = [(objects_id)::[p_mass, MATERIAL_STEEL, p_init_len, p_width, i_material, s_co2e, i_steel_waste]]
@@ -170,7 +170,7 @@ end;
 fun initialize_FormedPart((id, m1,wid1):FormedPart) = 
 let
    val objects_id = id_of_FormedPart(id)
-	val p_mass = "" (* -> simulate unknown data *)
+	val p_mass = "?" (* -> simulate unknown data *)
    val s_co2e = "0"
    val objects_with_attribute_values = [objects_id::[p_mass, MATERIAL_STEEL, s_co2e]]
 in
@@ -181,9 +181,9 @@ end;
 fun initialize_MalePart((id, m1,wid1):MalePart) = 
 let
    val objects_id = id_of_MalePart(id)
-	val p_mass = ""
-   val s_co2e = ""
-	val i_mass_waste = ""
+	val p_mass = "?"
+   val s_co2e = "?"
+	val i_mass_waste = "?"
    val objects_with_attribute_values = [objects_id::[p_mass, MATERIAL_STEEL, s_co2e, i_mass_waste]]
 in
    initialize_objects("MalePart", objects_with_attribute_values)
@@ -193,9 +193,9 @@ end;
 fun initialize_FemalePart((id, m1,wid1):FemalePart) = 
 let
    val objects_id = id_of_FemalePart(id)
-	val p_mass = ""
-   val s_co2e = ""
-	val i_mass_waste = ""
+	val p_mass = "?"
+   val s_co2e = "?"
+	val i_mass_waste = "?"
    val objects_with_attribute_values = [objects_id::[p_mass, MATERIAL_STEEL, s_co2e, i_mass_waste]]
 in
    initialize_objects("FemalePart", objects_with_attribute_values)
@@ -216,7 +216,7 @@ end;
 fun initialize_HingePack(id) =
 let 
    val objects_id = "o_hingepack_"^(Int.toString id)
-	val p_mass = ""
+	val p_mass = "?"
    val s_co2e = "0"
    val objects_with_attribute_values = [objects_id::[p_mass, MATERIAL_STEEL, s_co2e]]
 in
@@ -263,7 +263,7 @@ end;
 fun initialize_Worker(id) =
 let 
    val objects_id = id_of_Worker(id)
-   val objects_with_attribute_values = [objects_id::[""]]
+   val objects_with_attribute_values = [objects_id::["?"]]
 in
    initialize_objects("Worker", objects_with_attribute_values)
 end;
@@ -311,7 +311,7 @@ let
    
    val o2o_relations = [[id_of_SteelSheet(id1),id_of_SteelCoil(coil_id), "created from"]]
 in
-	write_event(event_id, "SplitSteelSheet", [s_co2e, i_electric, i_steel_waste]);
+	write_event(event_id, "SplitSteelSheet", [p_duration, s_co2e, i_electric, i_steel_waste]);
 	initialize_SteelSheet((id1, m1, len1, wid1));
    write_e2o_relations(e2o_relations);
    write_o2o_relations(o2o_relations)
@@ -330,13 +330,13 @@ let
    
    val i_electric = Real.toString (sim_electricity_heating(duration_s))
    val i_gas = Real.toString (p_gas_heating(0.0, duration_s, "on"))
-   val p_dureation_heating = Real.toString (duration_s)
+   val p_duration = Real.toString (duration_s)
    val i_emission_du_gas = i_gas
    
    val calls = [call("id_gas_upstream_kwh[Wh]", i_gas), call("id_gas_combustion_Wh", i_emission_du_gas), call("id_electric_kwh", i_electric)]
    val s_co2e = Real.toString (sumCalls(calls))
 in
-	write_event(event_id, "HeatSteelSheet", [s_co2e, i_electric, i_gas, i_emission_du_gas, p_dureation_heating]);
+	write_event(event_id, "HeatSteelSheet", [p_duration, s_co2e, i_electric, i_gas, i_emission_du_gas]);
    write_e2o_relations(e2o_relations)
 end;
 
@@ -349,6 +349,7 @@ let
 	val event_machine = [[event_id, id_of_Machine("former02"), "with"]]
    val e2o_relations = event_s^^event_fs^^event_location^^event_machine
 
+   val p_duration = Real.toString FORMING_TIME
    val i_electric = Real.toString (p_electricity_forming(0.0, FORMING_TIME, "on"))
 
    val calls = [call("id_electric_kwh", i_electric)]
@@ -356,7 +357,7 @@ let
 
    val o2o_relations = [[id_of_FormedPart(id2),id_of_SteelSheet(id1), "created from"]]
 in
-	write_event(event_id, "FormSteelSheet", [s_co2e, i_electric]);
+	write_event(event_id, "FormSteelSheet", [p_duration, s_co2e, i_electric]);
 	initialize_FormedPart((id2, m2, wid2));
    write_e2o_relations(e2o_relations);
    write_o2o_relations(o2o_relations)
@@ -371,6 +372,7 @@ let
 	val event_machine = [[event_id, id_of_Machine("coater03"), "with"]]
    val e2o_relations = event_s^^event_location^^event_machine
 
+   val p_duration = Real.toString COATING_TIME
    val i_electric = Real.toString (p_electricity_coating(0.0, COATING_TIME, "on"))
    val (i_coating, i_coating_waste, surface_m2) = sim_coat_usage()
 
@@ -379,7 +381,7 @@ let
    val calls = [call("id_electric_kwh", i_electric), call("id_coating[m2]", (Real.toString surface_m2)), call("id_industrial-waste[kg]", (Real.toString i_coating_waste))]
    val s_co2e = Real.toString (sumCalls(calls))
 in
-	write_event(event_id, "CoatPart", [s_co2e, i_electric, (Real.toString i_coating), (Real.toString i_coating_waste)]);
+	write_event(event_id, "CoatPart", [p_duration, s_co2e, i_electric, (Real.toString i_coating), (Real.toString i_coating_waste)]);
    write_e2o_relations(e2o_relations);
    change_oat(part_id, "FormedPart", "p_mass[kg]", [(Real.toString m1), "", ""])
 end;
@@ -397,11 +399,13 @@ let
    val duration_s = DelayCuttPartMale()
    val compressed_air_m3 = sim_compressed_air(duration_s)
 
+   val p_duration = Real.toString duration_s
    val i_electric = Real.toString (p_electricity_laser_a(0.0, duration_s, "on"))
    val i_compressed = Real.toString compressed_air_m3
    val i_gas_n2 = Real.toString (sim_gas_n2(duration_s))
    val i_gas_n2_emitted = i_gas_n2
-   val i_steel_waste = Real.toString (roundNth(m1-m2, 5))
+   val i_steel_waste = "?"
+   (*val i_steel_waste = Real.toString (roundNth(m1-m2, 5)) <-- Implicit given, must be minded*)
 
    val electric_from_air = Real.toString (electric_from_compressed_air(compressed_air_m3))
    val calls = [call("id_electric_kwh", i_electric), call("id_electric_kwh", electric_from_air), call("id_n2_gas", i_gas_n2)]
@@ -409,7 +413,7 @@ let
    
    val o2o_relations = [[id_of_MalePart(id2),id_of_FormedPart(id1), "created from"]]
 in
-	write_event(event_id, "CuttMalePart", [s_co2e, i_electric, i_compressed, i_gas_n2, i_gas_n2_emitted, i_steel_waste]);
+	write_event(event_id, "CuttMalePart", [p_duration, s_co2e, i_electric, i_compressed, i_gas_n2, i_gas_n2_emitted, i_steel_waste]);
    initialize_MalePart((id2, m2, wid2));
    write_e2o_relations(e2o_relations);
    write_o2o_relations(o2o_relations)
@@ -427,6 +431,7 @@ let
    val duration_s = DelayCuttPartFemale() 
    val compressed_air_m3 = sim_compressed_air(duration_s)
 
+   val p_duration = Real.toString duration_s
    val i_electric = Real.toString (p_electricity_laser_a(0.0, duration_s, "on"))
    val i_compressed = Real.toString compressed_air_m3
    val i_gas_n2 = Real.toString (sim_gas_n2(duration_s))
@@ -439,7 +444,7 @@ let
    
    val o2o_relations = [[id_of_FemalePart(id2),id_of_FormedPart(id1), "created from"]]
 in
-	write_event(event_id, "CuttFemalePart", [s_co2e, i_electric, i_compressed, i_gas_n2, i_gas_n2_emitted, i_steel_waste]);
+	write_event(event_id, "CuttFemalePart", [p_duration, s_co2e, i_electric, i_compressed, i_gas_n2, i_gas_n2_emitted, i_steel_waste]);
    initialize_FemalePart((id2, m2, wid2));
    write_e2o_relations(e2o_relations);
    write_o2o_relations(o2o_relations)
@@ -457,14 +462,16 @@ let
 	val event_worker = [[event_id, id_of_Worker(1), "with"]]
 	val e2o_relations = event_male^^event_location^^event_worker
 
+   val p_duration = "?" (* unknown time *)
    val i_compressed = Real.toString (sim_compressed_air(3.0))
    val calls = [call("id_compressed-air[m3]", i_compressed)] 
    val s_co2e = Real.toString (sumCalls(calls))
 in
-	write_event(event_id, "CheckMalePart", [s_co2e,i_compressed]);
+	write_event(event_id, "CheckMalePart", [p_duration, s_co2e,i_compressed]);
    write_e2o_relations(e2o_relations);
    change_oat(id_of_MalePart(id1), "MalePart", "p_mass[kg]", [(Real.toString m1), "", "", ""])
 end;
+
 fun write_CheckFemalePart((id1, m1, wid1), ok) = 
 let
    val event_id = "e_checkFemale_"^(Int.toString id1)^">"^(Bool.toString ok)
@@ -474,11 +481,12 @@ let
 	val event_worker = [[event_id, id_of_Worker(1), "with"]]
 	val e2o_relations = event_female^^event_location^^event_worker
 
+   val p_duration = "?" (* unknown time *)
    val i_compressed = Real.toString (sim_compressed_air(3.0))
    val calls = [call("id_compressed-air[m3]", i_compressed)]  (*call("id_waste-type_scrap_metal-open")*)
    val s_co2e = Real.toString (sumCalls(calls))
 in
-	write_event(event_id, "CheckFemalePart", [s_co2e,i_compressed]);
+	write_event(event_id, "CheckFemalePart", [p_duration, s_co2e,i_compressed]);
    write_e2o_relations(e2o_relations);
    change_oat(id_of_MalePart(id1), "FemalePart", "p_mass[kg]", [(Real.toString m1), "", "", ""])
 end;
@@ -494,19 +502,20 @@ let
 	val event_machine = [[event_id, id_of_Machine("assembler01"), "with"]]
 	val e2o_relations = part1^^part2^^part3^^part^^event_location^^event_machine
 
+   val p_duration = Real.toString ASSEMBLE_TIME (* Assumed time *)
    val mass = m1+m2+m3
    
-   val s_co2e = ""
+   val s_co2e = "?"
 
    val o2o_male = [[id_of_Hinge(id2), id_of_MalePart(id1), "created from"]]
    val o2o_female = [[id_of_Hinge(id2), id_of_FemalePart(id2), "created from"]]
    val o2o_pin = [[id_of_Hinge(id2), id_of_SteelPin(id3), "created from"]]
    val o2o_relations = o2o_male^^o2o_female^^o2o_pin
 in
-	write_event(event_id, "AssembleHinge", [s_co2e]);
+	write_event(event_id, "AssembleHinge", [p_duration, s_co2e]);
    initialize_Hinge((id2, mass));
-   write_e2o_relations(e2o_relations);
-   write_o2o_relations(o2o_relations)   (*<-- Implicit given, must be minded*)
+   write_e2o_relations(e2o_relations)
+   (*write_o2o_relations(o2o_relations)  <-- Implicit given, must be minded*)
 end; 
 
 fun write_PackHinges(hinge_list, id) =
@@ -519,13 +528,14 @@ let
 	val e2o_relations = pack^^pack_items^^event_location^^event_machine
 
    val i_cardboard = Real.toString (sim_cardboard_mass())
+   val p_duration = Real.toString (DelayPackHinges())
 
    val calls = [call("id_cardboard_material", i_cardboard)]
    val s_co2e = Real.toString (sumCalls(calls))
    
    val o2o_relations = map (fn (id1,_) => [id_of_HingePack(id), id_of_Hinge(id1),"created from"]) hinge_list
 in
-	write_event(event_id, "PackHinges", [s_co2e, i_cardboard]);
+	write_event(event_id, "PackHinges", [p_duration, s_co2e, i_cardboard]);
    initialize_HingePack(id);
    write_e2o_relations(e2o_relations);
    write_o2o_relations(o2o_relations)
@@ -538,8 +548,10 @@ let
 	val event_worker = [[event_id, id_of_Worker(id2), "with"]]
 	val event_location = [[event_id, id_of_Facility(1), "located at"]]
 	val e2o_relations = event_worker^^event_location   
+
+   val p_duration = Real.toString MOVE_TIME (* Assumed time *)
 in
-	write_event(event_id, "MoveParts", []);
+	write_event(event_id, "MoveParts", [p_duration]);
    write_e2o_relations(e2o_relations)
 end
 

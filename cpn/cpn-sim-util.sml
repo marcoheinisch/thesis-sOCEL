@@ -19,14 +19,18 @@ end;
 (* General COnfig      *)
 (***********************)
 
+(* Simualtaion dys *)
+val COIL_N = 4
+
 (* In CPN model defined: val SIMULATION_N = i.e. 3000; *)
+
+val SIMULATION_N = (3000 *COIL_N) div 4
 
 val SHEET_LENGTH            = 3.00 (* in cm *)
 val SHEET_WIDTH             = 3.00 (* in cm *)
 val SHEET_THICKNESS         = 0.30 (* in cm *)
 val MATERIAL_DENSTIY        = 0.00784 (* in kg/cm3 <--- 7.84 g/cm3 *)
 
-val COIL_N = 4
 val COIL_LENGTH = roundNth(real(SIMULATION_N)*SHEET_LENGTH*2.01 / real(COIL_N), 2)
 val PART_BATCH_N = 200
 

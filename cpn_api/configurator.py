@@ -36,7 +36,7 @@ def clear_requests():
     tree = ET.ElementTree(root)
     with open(config.FILEPATH_REQUESTS_XML, "wb") as file:
         tree.write(file)
-    logger.info(f"XML: Requests cleared.")
+    logger.debug(f"XML: Requests cleared.")
         
         
 def add_request_climatiq(request_id, param_data, factor_data, quantity_name):
@@ -73,7 +73,7 @@ def add_request_climatiq(request_id, param_data, factor_data, quantity_name):
     with open(config.FILEPATH_REQUESTS_XML, "wb") as file:
         tree.write(file)
         
-    logger.info(f"XML: Added Climatiq request {request_id}.")
+    logger.debug(f"XML: Added Climatiq request {request_id}.")
 
 
 def check_request_entry(request_id):
@@ -161,7 +161,7 @@ def add_default_entry(request_id, co2e_value_factor):
     with open(config.FILEPATH_REQUESTS_XML, "wb") as file:
         tree.write(file)
         
-    logger.info(f"XML: Added default entry {request_id}.")
+    logger.debug(f"XML: Added default entry {request_id}.")
 
 def check_default_entry(request_id):
     """

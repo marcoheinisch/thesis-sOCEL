@@ -1,0 +1,6 @@
+requests
+requests_cache
+
+pandas
+pm4py
+pytest

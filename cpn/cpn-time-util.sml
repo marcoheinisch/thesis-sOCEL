@@ -268,7 +268,8 @@ val COATING_TIME = 5.0*60.0;
 fun DelayCoatPart() =  ran_delay_010(10.5*60.0 + COATING_TIME);
 
 
-fun DelayMoveParts() =  ran_delay_010(15.0*60.0);
+val MOVE_TIME = 15.0*60.0;
+fun DelayMoveParts() =  ran_delay_010(MOVE_TIME);
 
 fun DelayCuttPartMale() =  ran_delay_002(10.0);
 fun DelayCuttPartFemale() =  ran_delay_002(12.5);
@@ -279,9 +280,11 @@ fun DelayAfterCuttPart() =  ran_delay_010(0.5*60.0);
 fun DelayCheckMalePart() =  ran_delay_010(11.0);
 fun DelayCheckFemalePart() =  ran_delay_010(11.0);
 
-fun DelayAssembleParts() =  ran_delay_010(5.0);
+val ASSEMBLE_TIME = 5.0;
+fun DelayAssembleParts() =  ran_delay_002(ASSEMBLE_TIME+1.0);
 
-fun DelayPackHinges() =  ran_delay_010(30.0);
+fun DelayPackHinges() =  ran_delay_002(30.0);
+fun DelayOutputPackedHinges() =  ran_delay_010(5.0);
 
 fun DelayGoTo() = ran_delay_010(7.0*60.0);
 

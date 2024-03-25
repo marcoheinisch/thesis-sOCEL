@@ -28,4 +28,4 @@ def replace_cpn_ids(cpm_file_path):
     with open(cpm_file_path, 'w') as file:
         file.write(updated_data)
         
-replace_cpn_ids(cpm_file_path='cpn/CleanStart.cpn')
+replace_cpn_ids(cpm_file_path='.//cpn//HingeProduction.cpn')
