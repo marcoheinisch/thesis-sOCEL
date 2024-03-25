@@ -1,4 +1,4 @@
-import main # enables logging while testing
+import cpn_api_start # enables logging while testing
 
 import unittest
 import os
