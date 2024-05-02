@@ -251,11 +251,11 @@ in
    write_o2o_relations(o2o_relations)
 end;
 
-fun initialize_Machine(id, id_ws) =
+fun initialize_Machine(id, id_ws, p_electricity, p_gas) =
 let 
    val objects_id = id_of_Machine(id)
-   val p_electricity = str_pointer_str("M-electr", id)
-   val p_gas = str_pointer_str("M-gas", id)
+   (*val p_electricity = str_pointer_str("M-electr", id)*)
+   (*val p_gas = str_pointer_str("M-gas", id)*)
    val objects_with_attribute_values = [objects_id::[p_electricity, p_gas]]
    val o2o_relations = [[objects_id,id_of_Workstation(id_ws), "located at"]] 
 in
@@ -280,13 +280,13 @@ fun initialize_meta_objects() = (
    initialize_Workstation(1, 1);
    initialize_Workstation(2, 1);
    initialize_Workstation(3, 1);
-   initialize_Machine("splitter01",1);
-   initialize_Machine("oven01",1);
-   initialize_Machine("former02",1);
-   initialize_Machine("coater03",1);
-   initialize_Machine("cutter01",2);
-   initialize_Machine("assembler01",3);
-   initialize_Machine("packer01",3);
+   initialize_Machine("splitter01",1, str_pointer_str("M-electr", "splitter01"), "");
+   initialize_Machine("oven01",1, str_pointer_str("M-electr", "oven01"), str_pointer_str("M-gas", "oven01"));
+   initialize_Machine("former02",1, str_pointer_str("M-electr", "former02"), "");
+   initialize_Machine("coater03",1, str_pointer_str("M-electr", "coater03"), "");
+   initialize_Machine("cutter01",2, str_pointer_str("M-electr", "cutter01"), "");
+   initialize_Machine("assembler01",3, "", "");
+   initialize_Machine("packer01",3, "", "");
    initialize_Worker(1)
 );
 
